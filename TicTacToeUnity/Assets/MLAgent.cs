@@ -57,10 +57,7 @@ public class MLAgent : Agent
         int row = (int)vectorAction[0];
         int col = (int)vectorAction[1];
 
-        if (!Main.Play(row, col))
-        {
-            AddReward(-1.0f);
-        }
+        Main.Play(row, col);
     }
 
     private void RandomPlay()
@@ -82,9 +79,7 @@ public class MLAgent : Agent
 
         var randomPlay = potentialPlay[Random.Range(0, potentialPlay.Count)];
 
-        bool result = Main.Play(randomPlay.row, randomPlay.col);
-
-        Debug.Assert(result);
+        Main.Play(randomPlay.row, randomPlay.col);
     }
 
     private void FinishEpisode()
@@ -94,15 +89,15 @@ public class MLAgent : Agent
         // Rewards
         if (game.Winner == _mlPlayer)
         {
-            AddReward(1.0f);
+            SetReward(1.0f);
         }
         else if (game.Winner == null)
         {
-            AddReward(0.5f);
+            SetReward(0.5f);
         }
         else
         {
-            AddReward(-1.0f);
+            SetReward(-1.0f);
         }
 
         EndEpisode();

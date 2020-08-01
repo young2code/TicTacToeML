@@ -77,6 +77,7 @@
 
             if (Board[row, col] != CellType.Blank)
             {
+                CurrentPlayer = CurrentPlayer == Player.PlayerCircle ? Player.PlayerCross : Player.PlayerCircle;
                 return;
             }
 
@@ -93,7 +94,6 @@
             {
                 Winner = null;
                 State = GameState.Ended;
-
             }
             else
             {

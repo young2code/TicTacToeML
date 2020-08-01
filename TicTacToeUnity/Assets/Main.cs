@@ -102,7 +102,7 @@ public class Main : MonoBehaviour
         switch (_game.Board[row, col])
         {
             case Game.CellType.Blank:
-                return () => { OnBlankClick(row, col); };
+                return () => { Play(row, col); };
             case Game.CellType.Circle:
                 return () => { };
             case Game.CellType.Cross:
@@ -112,19 +112,7 @@ public class Main : MonoBehaviour
         return null;
     }
 
-    public bool Play(int row, int col)
-    {
-        if (_game.Board[row, col] != Game.CellType.Blank)
-        {
-            return false;
-        }
-
-        OnBlankClick(row, col);
-
-        return true;
-    }
-
-    private void OnBlankClick(int row, int col)
+    public void Play(int row, int col)
     {
         _game.SetCell(row, col, _game.CurrentPlayer);
 
