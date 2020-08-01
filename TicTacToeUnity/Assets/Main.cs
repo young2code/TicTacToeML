@@ -31,7 +31,7 @@ public class Main : MonoBehaviour
         UpdateStateText();
     }
 
-    private void StartNewGame()
+    public void StartNewGame()
     {
         _game.Start();
         Save(_game);
@@ -39,6 +39,11 @@ public class Main : MonoBehaviour
         CreateCells();
 
         UpdateStateText();
+    }
+
+    public Game GetGame()
+    {
+        return _game;
     }
 
     private void CreateCells()
@@ -105,6 +110,18 @@ public class Main : MonoBehaviour
         }
 
         return null;
+    }
+
+    public bool Play(int row, int col)
+    {
+        if (_game.Board[row, col] != Game.CellType.Blank)
+        {
+            return false;
+        }
+
+        OnBlankClick(row, col);
+
+        return true;
     }
 
     private void OnBlankClick(int row, int col)
