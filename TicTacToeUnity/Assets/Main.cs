@@ -15,6 +15,7 @@ public class Main : MonoBehaviour
     public Canvas Canvas;
     public Button NewGameButton;
     public Text StateText;
+    public bool _IsTraining;
 
     private Game _game;
     private Button[,] _board = new Button[Game.MaxSize, Game.MaxSize];
@@ -48,6 +49,11 @@ public class Main : MonoBehaviour
 
     private void CreateCells()
     {
+        if (_IsTraining)
+        {
+            return;
+        }
+
         for (int row = 0; row < Game.MaxSize; ++row)
         {
             for (int col = 0; col < Game.MaxSize; ++col)
@@ -59,6 +65,11 @@ public class Main : MonoBehaviour
 
     private void CreateCell(int row, int col)
     {
+        if (_IsTraining)
+        {
+            return;
+        }
+
         GameObject newGameObject = Instantiate(GetCellPrefab(row, col), Canvas.transform);
         Button button = newGameObject.GetComponent<Button>();
 
@@ -149,15 +160,25 @@ public class Main : MonoBehaviour
 
     }
 
-    private static void Save(Game game)
+    private void Save(Game game)
     {
+        if (_IsTraining)
+        {
+            return;
+        }
+
         string json = JsonConvert.SerializeObject(game);
         string path = Path.Combine(Application.persistentDataPath, FileName);
         File.WriteAllText(path, json);
     }
 
-    private static Game Load()
+    private Game Load()
     {
+        if (_IsTraining)
+        {
+            return null;
+        }
+
         string path = Path.Combine(Application.persistentDataPath, FileName);
         if (File.Exists(path))
         {

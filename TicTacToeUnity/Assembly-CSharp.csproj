@@ -264,23 +264,23 @@
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.burst@1.2.3/Unity.Burst.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Abstractions.TestingHelpers">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.ml-agents@1.0.3/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
-    </Reference>
     <Reference Include="Google.Protobuf">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.barracuda@1.0.1/Barracuda/Runtime/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.burst@1.2.3/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Abstractions">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.ml-agents@1.0.3/Plugins/System.IO.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Interactive.Async">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.ml-agents@1.0.3/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
+    <Reference Include="System.IO.Abstractions.TestingHelpers">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.ml-agents@1.0.3/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Grpc.Core">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.ml-agents@1.0.3/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/PackageCache/com.unity.ml-agents@1.0.3/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -633,8 +633,20 @@
     <Reference Include="UnityEngine.Monetization">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Barracuda.MacBLAS">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.Editor">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
@@ -648,41 +660,11 @@
     <Reference Include="Unity.Timeline">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Barracuda.MacBLAS">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Barracuda.Editor">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Editor">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Barracuda">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Barracuda.iOSBLAS">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
@@ -690,20 +672,38 @@
     <Reference Include="Unity.ML-Agents.CommunicatorObjects">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.ML-Agents.CommunicatorObjects.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Barracuda.BurstBLAS">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ML-Agents.Editor">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ML-Agents">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/Unity.ML-Agents.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

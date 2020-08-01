@@ -209,7 +209,6 @@ GameObject:
   m_Component:
   - component: {fileID: 323540337}
   - component: {fileID: 323540336}
-  - component: {fileID: 323540338}
   - component: {fileID: 323540339}
   m_Layer: 0
   m_Name: Agent
@@ -249,20 +248,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &323540338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323540335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 10
-  TakeActionsBetweenDecisions: 1
 --- !u!114 &323540339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +263,7 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 10
     NumStackedVectorObservations: 5
-    VectorActionSize: 0300000003000000
+    VectorActionSize: 09000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
@@ -771,6 +756,7 @@ MonoBehaviour:
   Canvas: {fileID: 839432941}
   NewGameButton: {fileID: 1747848339}
   StateText: {fileID: 1361658729}
+  _IsTraining: 1
 --- !u!4 &1861825759
 Transform:
   m_ObjectHideFlags: 0

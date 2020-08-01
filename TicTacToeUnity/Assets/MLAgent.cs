@@ -9,21 +9,23 @@ public class MLAgent : Agent
     public Main Main;
     private Game.Player _mlPlayer;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Game game = Main.GetGame();
         if (game.State == Game.GameState.Running)
         {
             if (game.CurrentPlayer == _mlPlayer)
             {
-                RequestAction();
+                RequestDecision();
             }
             else
             {
-                RandomPlay();
+                int randomPlay = RandomPlay();
+                var play = GetRowCol(randomPlay);
+                Main.Play(play.row, play.col);
             }
         }
-        else
+        else if (game.State == Game.GameState.Ended)
         {
             FinishEpisode();
         }
@@ -32,8 +34,7 @@ public class MLAgent : Agent
     public override void OnEpisodeBegin()
     {
         _mlPlayer = (Game.Player)Random.Range(0, 2);
-        Game game = Main.GetGame();
-        game.Start();
+        Main.StartNewGame();
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -53,18 +54,47 @@ public class MLAgent : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        // Actions, size = 2
-        int row = (int)vectorAction[0];
-        int col = (int)vectorAction[1];
+        // Actions, size = 0 [0~8]
+        var play = GetRowCol((int)vectorAction[0]);
 
-        Main.Play(row, col);
+        Main.Play(play.row, play.col);
     }
 
-    private void RandomPlay()
+    //public override void Heuristic(float[] actionsOut)
+    //{
+    //    actionsOut[0] = RandomPlay();
+    //}
+
+    public override void CollectDiscreteActionMasks(DiscreteActionMasker actionMasker)
+    {
+        actionMasker.SetMask(0, GetImpossiblePlays());
+    }
+
+    private List<int> GetImpossiblePlays()
     {
         Game game = Main.GetGame();
 
-        List<(int row, int col)> potentialPlay = new List<(int row, int col)>();
+        List<int> impossbilePlays = new List<int>();
+
+        for (int row = 0; row < Game.MaxSize; ++row)
+        {
+            for (int col = 0; col < Game.MaxSize; ++col)
+            {
+                if (game.Board[row, col] != Game.CellType.Blank)
+                {
+                    impossbilePlays.Add(GetIndex(row, col));
+                }
+            }
+        }
+
+        return impossbilePlays;
+    }
+
+    private int RandomPlay()
+    {
+        Game game = Main.GetGame();
+
+        List<int> possiblePlays = new List<int>();
 
         for (int row = 0; row < Game.MaxSize; ++row)
         {
@@ -72,14 +102,12 @@ public class MLAgent : Agent
             {
                 if (game.Board[row, col] == Game.CellType.Blank)
                 {
-                    potentialPlay.Add((row, col));
+                    possiblePlays.Add(GetIndex(row, col));
                 }
             }
         }
 
-        var randomPlay = potentialPlay[Random.Range(0, potentialPlay.Count)];
-
-        Main.Play(randomPlay.row, randomPlay.col);
+        return possiblePlays[Random.Range(0, possiblePlays.Count)];
     }
 
     private void FinishEpisode()
@@ -101,5 +129,15 @@ public class MLAgent : Agent
         }
 
         EndEpisode();
+    }
+
+    private int GetIndex(int row, int col)
+    {
+        return row * Game.MaxSize + col;
+    }
+
+    private (int row, int col) GetRowCol(int index)
+    {
+        return (index / Game.MaxSize, index % Game.MaxSize);
     }
 }
