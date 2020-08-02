@@ -6,23 +6,29 @@ using UnityEngine;
 
 public class MLAgent : Agent
 {
+    public enum Mode
+    {
+        Train,
+        Play,
+    }
+
     public Main Main;
-    private Game.Player _mlPlayer;
+    public Mode CurrentMode;
+    public Game.Player Player;
+    public bool PlayAgainstSelf;
 
     private void FixedUpdate()
     {
         Game game = Main.GetGame();
         if (game.State == Game.GameState.Running)
         {
-            if (game.CurrentPlayer == _mlPlayer)
+            if (game.CurrentPlayer == Player)
             {
                 RequestDecision();
             }
-            else
+            else if (CurrentMode == Mode.Train && !PlayAgainstSelf)
             {
-                int randomPlay = RandomPlay();
-                var play = GetRowCol(randomPlay);
-                Main.Play(play.row, play.col);
+                RandomPlay();
             }
         }
         else if (game.State == Game.GameState.Ended)
@@ -33,15 +39,28 @@ public class MLAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        _mlPlayer = (Game.Player)Random.Range(0, 2);
-        Main.StartNewGame();
+        if (CurrentMode == Mode.Play)
+        {
+            return;
+        }
+
+        if (!PlayAgainstSelf)
+        {
+            Player = (Game.Player)Random.Range(0, 2);
+        }
+
+        Game game = Main.GetGame();
+        if (game.State != Game.GameState.Running)
+        {
+            Main.StartNewGame();
+        }
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         Game game = Main.GetGame();
 
-        sensor.AddObservation((int)_mlPlayer);
+        sensor.AddObservation((int)Player);
 
         for (int row = 0; row < Game.MaxSize; ++row)
         {
@@ -54,16 +73,9 @@ public class MLAgent : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        // Actions, size = 0 [0~8]
-        var play = GetRowCol((int)vectorAction[0]);
-
-        Main.Play(play.row, play.col);
+        var mlPlay = GetRowCol((int)vectorAction[0]);
+        Main.Play(mlPlay.row, mlPlay.col);
     }
-
-    //public override void Heuristic(float[] actionsOut)
-    //{
-    //    actionsOut[0] = RandomPlay();
-    //}
 
     public override void CollectDiscreteActionMasks(DiscreteActionMasker actionMasker)
     {
@@ -90,7 +102,7 @@ public class MLAgent : Agent
         return impossbilePlays;
     }
 
-    private int RandomPlay()
+    private void RandomPlay()
     {
         Game game = Main.GetGame();
 
@@ -107,21 +119,28 @@ public class MLAgent : Agent
             }
         }
 
-        return possiblePlays[Random.Range(0, possiblePlays.Count)];
+        int randomPlayIndex =  possiblePlays[Random.Range(0, possiblePlays.Count)];
+        var randomPlay = GetRowCol(randomPlayIndex);
+        Main.Play(randomPlay.row, randomPlay.col);
     }
 
     private void FinishEpisode()
     {
+        if (CurrentMode == Mode.Play)
+        {
+            return;
+        }
+        
         Game game = Main.GetGame();
 
         // Rewards
-        if (game.Winner == _mlPlayer)
+        if (game.Winner == Player)
         {
             SetReward(1.0f);
         }
         else if (game.Winner == null)
         {
-            SetReward(0.5f);
+            SetReward(0.0f);
         }
         else
         {

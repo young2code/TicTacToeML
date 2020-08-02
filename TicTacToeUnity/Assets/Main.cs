@@ -15,7 +15,7 @@ public class Main : MonoBehaviour
     public Canvas Canvas;
     public Button NewGameButton;
     public Text StateText;
-    public bool _IsTraining;
+    public MLAgent Agent;
 
     private Game _game;
     private Button[,] _board = new Button[Game.MaxSize, Game.MaxSize];
@@ -23,7 +23,10 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        NewGameButton.onClick.AddListener(StartNewGame);
+        if (Agent.CurrentMode == MLAgent.Mode.Play)
+        {
+            NewGameButton.onClick.AddListener(StartNewGame);
+        }
 
         _game = Load() ?? new Game();
 
@@ -34,6 +37,11 @@ public class Main : MonoBehaviour
 
     public void StartNewGame()
     {
+        if (Agent.CurrentMode == MLAgent.Mode.Play)
+        {
+            Agent.Player = (Game.Player)Random.Range(0, 2);
+        }
+
         _game.Start();
         Save(_game);
 
@@ -49,7 +57,7 @@ public class Main : MonoBehaviour
 
     private void CreateCells()
     {
-        if (_IsTraining)
+        if (Agent.CurrentMode == MLAgent.Mode.Train)
         {
             return;
         }
@@ -65,7 +73,7 @@ public class Main : MonoBehaviour
 
     private void CreateCell(int row, int col)
     {
-        if (_IsTraining)
+        if (Agent.CurrentMode == MLAgent.Mode.Train)
         {
             return;
         }
@@ -113,9 +121,19 @@ public class Main : MonoBehaviour
         switch (_game.Board[row, col])
         {
             case Game.CellType.Blank:
-                return () => { Play(row, col); };
+                return () => 
+                {
+                    if (Agent.CurrentMode == MLAgent.Mode.Train)
+                    {
+                        return;
+                    }
+
+                    Play(row, col); 
+                };
+
             case Game.CellType.Circle:
                 return () => { };
+
             case Game.CellType.Cross:
                 return () => { };
         }
@@ -157,12 +175,11 @@ public class Main : MonoBehaviour
                 StateText.text = string.Empty;
                 break;
         }
-
     }
 
     private void Save(Game game)
     {
-        if (_IsTraining)
+        if (Agent.CurrentMode == MLAgent.Mode.Train)
         {
             return;
         }
@@ -174,7 +191,7 @@ public class Main : MonoBehaviour
 
     private Game Load()
     {
-        if (_IsTraining)
+        if (Agent.CurrentMode == MLAgent.Mode.Train)
         {
             return null;
         }

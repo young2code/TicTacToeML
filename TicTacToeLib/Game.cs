@@ -1,4 +1,6 @@
-﻿namespace TicTacToe
+﻿using System;
+
+namespace TicTacToe
 {
     public class Game
     {
@@ -33,7 +35,8 @@
         {
             State = GameState.None;
 
-            CurrentPlayer = Player.PlayerCircle;
+            Random rand = new Random();
+            CurrentPlayer = (Game.Player)rand.Next(0, 2);
 
             Winner = null;
 
