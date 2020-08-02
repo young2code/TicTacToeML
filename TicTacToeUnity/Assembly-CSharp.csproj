@@ -64,7 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MLAgent.cs" />
+    <Compile Include="Assets\MLAgentSelfPlay.cs" />
     <Compile Include="Assets\Main.cs" />
+    <Compile Include="Assets\MainSelf.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
