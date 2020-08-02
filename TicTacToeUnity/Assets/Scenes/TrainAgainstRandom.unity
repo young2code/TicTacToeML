@@ -683,7 +683,7 @@ MonoBehaviour:
   Canvas: {fileID: 839432941}
   NewGameButton: {fileID: 1747848339}
   StateText: {fileID: 1361658729}
-  _IsTraining: 1
+  Agent: {fileID: 8825631591460741516}
 --- !u!4 &1861825759
 Transform:
   m_ObjectHideFlags: 0
@@ -772,3 +772,15 @@ PrefabInstance:
       objectReference: {fileID: 1861825758}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0b923f3eeecd1742a45d5e6f282684a, type: 3}
+--- !u!114 &8825631591460741516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8825631591137244411, guid: e0b923f3eeecd1742a45d5e6f282684a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8825631591460741515}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e831dba631206bc4286137c67ec3f6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

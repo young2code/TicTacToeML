@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 10
-    NumStackedVectorObservations: 5
+    NumStackedVectorObservations: 1
     VectorActionSize: 09000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0

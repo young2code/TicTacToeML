@@ -39,7 +39,7 @@ public class Main : MonoBehaviour
     {
         if (Agent.CurrentMode == MLAgent.Mode.Play)
         {
-            Agent.Player = (Game.Player)Random.Range(0, 2);
+            Agent.Player = Game.Player.PlayerCircle;
         }
 
         _game.Start();

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8825631591137244411}
   - component: {fileID: 8825631591137244408}
   m_Layer: 0
-  m_Name: AgentForTraining
+  m_Name: MLAgent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,8 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   Main: {fileID: 0}
+  CurrentMode: 0
+  Player: 0
 --- !u!114 &8825631591137244408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 10
-    NumStackedVectorObservations: 5
+    VectorObservationSize: 9
+    NumStackedVectorObservations: 1
     VectorActionSize: 09000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0

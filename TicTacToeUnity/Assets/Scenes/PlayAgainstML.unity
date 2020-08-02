@@ -220,8 +220,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: dde2f627694deb540bf974140824c8bd,
+      objectReference: {fileID: 5022602860645237092, guid: df643375fc85014448ff1bed30add39f,
         type: 3}
+    - target: {fileID: 8825631591137244408, guid: e0b923f3eeecd1742a45d5e6f282684a,
+        type: 3}
+      propertyPath: m_BrainParameters.NumStackedVectorObservations
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8825631591137244410, guid: e0b923f3eeecd1742a45d5e6f282684a,
         type: 3}
       propertyPath: m_LocalPosition.x

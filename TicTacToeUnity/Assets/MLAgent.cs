@@ -15,7 +15,6 @@ public class MLAgent : Agent
     public Main Main;
     public Mode CurrentMode;
     public Game.Player Player;
-    public bool PlayAgainstSelf;
 
     private void FixedUpdate()
     {
@@ -26,7 +25,7 @@ public class MLAgent : Agent
             {
                 RequestDecision();
             }
-            else if (CurrentMode == Mode.Train && !PlayAgainstSelf)
+            else if (CurrentMode == Mode.Train)
             {
                 RandomPlay();
             }
@@ -44,10 +43,7 @@ public class MLAgent : Agent
             return;
         }
 
-        if (!PlayAgainstSelf)
-        {
-            Player = (Game.Player)Random.Range(0, 2);
-        }
+        Player = Game.Player.PlayerCircle;
 
         Game game = Main.GetGame();
         if (game.State != Game.GameState.Running)
@@ -59,8 +55,6 @@ public class MLAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         Game game = Main.GetGame();
-
-        sensor.AddObservation((int)Player);
 
         for (int row = 0; row < Game.MaxSize; ++row)
         {
