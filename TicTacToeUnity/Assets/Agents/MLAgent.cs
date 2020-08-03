@@ -113,7 +113,7 @@ public class MLAgent : Agent
             }
         }
 
-        int randomPlayIndex =  possiblePlays[Random.Range(0, possiblePlays.Count)];
+        int randomPlayIndex = possiblePlays[Random.Range(0, possiblePlays.Count)];
         var randomPlay = GetRowCol(randomPlayIndex);
         Main.Play(randomPlay.row, randomPlay.col);
     }

@@ -56,32 +56,31 @@ namespace TicTacToe
             State = GameState.Running;
         }
 
-        public void SetCell(int row, int col, Player player)
+        public bool SetCell(int row, int col, Player player)
         {
             if (State != GameState.Running)
             {
-                return;
+                return false;
             }
 
             if (player != CurrentPlayer)
             {
-                return;
+                return false;
             }
 
             if (row < 0 || row >= MaxSize)
             {
-                return;
+                return false;
             }
 
             if (col < 0 || col >= MaxSize)
             {
-                return;
+                return false;
             }
 
             if (Board[row, col] != CellType.Blank)
             {
-                CurrentPlayer = CurrentPlayer == Player.PlayerCircle ? Player.PlayerCross : Player.PlayerCircle;
-                return;
+                return false;
             }
 
             CellType type = player == Player.PlayerCircle ? CellType.Circle : CellType.Cross;
@@ -102,6 +101,8 @@ namespace TicTacToe
             {
                 CurrentPlayer = CurrentPlayer == Player.PlayerCircle ? Player.PlayerCross : Player.PlayerCircle;
             }
+
+            return true;
         }
 
         public static bool CheckWinner(CellType[,] board, int rowMarked, int colMarked, CellType typeMarked)

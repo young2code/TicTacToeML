@@ -67,8 +67,10 @@
     <Compile Include="Assets\Agents\MLAgentHeuristic.cs" />
     <Compile Include="Assets\Agents\MLAgentPlay.cs" />
     <Compile Include="Assets\Agents\MLAgentSelfPlay.cs" />
+    <Compile Include="Assets\Main\IMain.cs" />
     <Compile Include="Assets\Main\Main.cs" />
     <Compile Include="Assets\Main\MainHeurisitc.cs" />
+    <Compile Include="Assets\Main\MainPlay.cs" />
     <Compile Include="Assets\Main\MainSelf.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="UnityEngine">
