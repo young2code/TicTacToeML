@@ -88,7 +88,7 @@ namespace TicTacToe
 
             Board[row, col] = type;
 
-            if (CheckWinner(row, col, type))
+            if (CheckWinner(Board, row, col, type))
             {
                 Winner = player;
                 State = GameState.Ended;
@@ -104,19 +104,19 @@ namespace TicTacToe
             }
         }
 
-        private bool CheckWinner(int rowMarked, int colMarked, CellType typeMarked)
+        public static bool CheckWinner(CellType[,] board, int rowMarked, int colMarked, CellType typeMarked)
         {
-            if (CheckHorizontalLine(rowMarked, typeMarked))
+            if (CheckHorizontalLine(board, rowMarked, typeMarked))
             {
                 return true;
             }
 
-            if (CheckVerticalLine(colMarked, typeMarked))
+            if (CheckVerticalLine(board, colMarked, typeMarked))
             {
                 return true;
             }
 
-            if (CheckDiagonalLine(rowMarked, colMarked, typeMarked))
+            if (CheckDiagonalLine(board, rowMarked, colMarked, typeMarked))
             {
                 return true;
             }
@@ -124,11 +124,11 @@ namespace TicTacToe
             return false;
         }
 
-        private bool CheckHorizontalLine(int rowMarked, CellType typeMarked)
+        private static bool CheckHorizontalLine(CellType[,] board, int rowMarked, CellType typeMarked)
         {
             for (int col = 0; col < MaxSize; ++col)
             {
-                if (Board[rowMarked, col] != typeMarked)
+                if (board[rowMarked, col] != typeMarked)
                 {
                     return false;
                 }
@@ -137,11 +137,11 @@ namespace TicTacToe
             return true;
         }
 
-        private bool CheckVerticalLine(int colMarked, CellType typeMarked)
+        private static bool CheckVerticalLine(CellType[,] board, int colMarked, CellType typeMarked)
         {
             for (int row = 0; row < MaxSize; ++row)
             {
-                if (Board[row, colMarked] != typeMarked)
+                if (board[row, colMarked] != typeMarked)
                 {
                     return false;
                 }
@@ -150,13 +150,13 @@ namespace TicTacToe
             return true;
         }
 
-        private bool CheckDiagonalLine(int rowMarked, int colMarked, CellType typeMarked)
+        private static bool CheckDiagonalLine(CellType[,] board, int rowMarked, int colMarked, CellType typeMarked)
         {
             if (rowMarked == colMarked)
             {
                 for (int index = 0; index < MaxSize; ++index)
                 {
-                    if (Board[index, index] != typeMarked)
+                    if (board[index, index] != typeMarked)
                     {
                         return false;
                     }
@@ -168,7 +168,7 @@ namespace TicTacToe
             {
                 for (int index = 0; index < MaxSize; ++index)
                 {
-                    if (Board[index, MaxSize - index - 1] != typeMarked)
+                    if (board[index, MaxSize - index - 1] != typeMarked)
                     {
                         return false;
                     }

@@ -24,13 +24,31 @@ public class MLAgentSelfPlay : Agent
     {
         Game game = Main.GetGame();
 
-        sensor.AddObservation((int)Player);
-
         for (int row = 0; row < Game.MaxSize; ++row)
         {
             for (int col = 0; col < Game.MaxSize; ++col)
             {
-                sensor.AddObservation((int)game.Board[row, col]);
+                Game.CellType cell = game.Board[row, col];
+
+                // Inverse the cell so that it plays as if  it is a circle player.
+                if (Player == Game.Player.PlayerCross)
+                {
+                    switch (cell)
+                    {
+                        case Game.CellType.Blank:
+                            break;
+
+                        case Game.CellType.Circle:
+                            cell = Game.CellType.Cross;
+                            break;
+
+                        case Game.CellType.Cross:
+                            cell = Game.CellType.Circle;
+                            break;
+                    }
+                }
+
+                sensor.AddObservation((int)cell);
             }
         }
     }
