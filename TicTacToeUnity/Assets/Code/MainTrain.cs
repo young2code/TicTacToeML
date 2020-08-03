@@ -10,7 +10,7 @@ public class MainTrain : MonoBehaviour, IMain
     public Text StateText;
     public MLAgent Agent0;
     public MLAgent Agent1;
-    public bool SkipRendering;
+    public bool StopRendering;
 
     private Game _game;
     private Button[,] _board = new Button[Game.MaxSize, Game.MaxSize];
@@ -118,6 +118,11 @@ public class MainTrain : MonoBehaviour, IMain
 
     private void UpdateCell(int row, int col, Game.CellType cell)
     {
+        if (StopRendering)
+        {
+            return;
+        }
+
         Button button = _board[row, col];
 
         button.onClick.RemoveAllListeners();

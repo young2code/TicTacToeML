@@ -67,7 +67,6 @@
     <Compile Include="Assets\Code\MLAgent.cs" />
     <Compile Include="Assets\Code\MainPlay.cs" />
     <Compile Include="Assets\Code\MainTrain.cs" />
-    <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -250,9 +249,6 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="TicTacToeLib">
       <HintPath>C:/Projects/personal/UnityML-Agents/TicTacToeML/TicTacToeUnity/Assets/TicTacToeLib/TicTacToeLib.dll</HintPath>
