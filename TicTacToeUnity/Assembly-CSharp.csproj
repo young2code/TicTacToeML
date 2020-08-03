@@ -63,15 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Agents\MLAgent.cs" />
-    <Compile Include="Assets\Agents\MLAgentHeuristic.cs" />
-    <Compile Include="Assets\Agents\MLAgentPlay.cs" />
-    <Compile Include="Assets\Agents\MLAgentSelfPlay.cs" />
-    <Compile Include="Assets\Main\IMain.cs" />
-    <Compile Include="Assets\Main\Main.cs" />
-    <Compile Include="Assets\Main\MainHeurisitc.cs" />
-    <Compile Include="Assets\Main\MainPlay.cs" />
-    <Compile Include="Assets\Main\MainSelf.cs" />
+    <Compile Include="Assets\Code\IMain.cs" />
+    <Compile Include="Assets\Code\MLAgent.cs" />
+    <Compile Include="Assets\Code\MainPlay.cs" />
+    <Compile Include="Assets\Code\MainTrain.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -4,7 +4,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
-public class MLAgentPlay : Agent
+public class MLAgent : Agent
 {
     public enum HeuristicType
     {
@@ -15,18 +15,12 @@ public class MLAgentPlay : Agent
     public IMain Main;
     public HeuristicType CurrentHeuristicType;
 
-    private readonly Game.Player Player = Game.Player.PlayerCircle;
+    public Game.Player Player = Game.Player.PlayerCircle;
 
-    private void FixedUpdate()
+    public override void OnActionReceived(float[] vectorAction)
     {
-        Game game = Main.GetGame();
-        if (game.State == Game.GameState.Running)
-        {
-            if (game.CurrentPlayer == Player)
-            {
-                RequestDecision();
-            }
-        }
+        var mlPlay = GetRowCol((int)vectorAction[0]);
+        Main.Play(mlPlay.row, mlPlay.col);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -37,15 +31,29 @@ public class MLAgentPlay : Agent
         {
             for (int col = 0; col < Game.MaxSize; ++col)
             {
-                sensor.AddObservation((int)game.Board[row, col]);
+                Game.CellType cell = game.Board[row, col];
+
+                // Inverse the cell so that it plays as if  it is a circle player.
+                if (Player == Game.Player.PlayerCross)
+                {
+                    switch (cell)
+                    {
+                        case Game.CellType.Blank:
+                            break;
+
+                        case Game.CellType.Circle:
+                            cell = Game.CellType.Cross;
+                            break;
+
+                        case Game.CellType.Cross:
+                            cell = Game.CellType.Circle;
+                            break;
+                    }
+                }
+
+                sensor.AddObservation((int)cell);
             }
         }
-    }
-
-    public override void OnActionReceived(float[] vectorAction)
-    {
-        var mlPlay = GetRowCol((int)vectorAction[0]);
-        Main.Play(mlPlay.row, mlPlay.col);
     }
 
     public override void CollectDiscreteActionMasks(DiscreteActionMasker actionMasker)

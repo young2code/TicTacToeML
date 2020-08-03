@@ -3,13 +3,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class MainPlay : MonoBehaviour, IMain
+public class MainTrain : MonoBehaviour, IMain
 {
     public GameObject CellPrefab;
     public Canvas Canvas;
-    public Button NewGameButton;
     public Text StateText;
-    public MLAgentPlay Agent;
+    public MLAgent Agent0;
+    public MLAgent Agent1;
+    public bool SkipRendering;
 
     private Game _game;
     private Button[,] _board = new Button[Game.MaxSize, Game.MaxSize];
@@ -17,7 +18,8 @@ public class MainPlay : MonoBehaviour, IMain
     // Start is called before the first frame update
     private void Start()
     {
-        Agent.Main = this;
+        Agent0.Main = this;
+        Agent1.Main = this;
 
         _game = new Game();
 
@@ -25,14 +27,54 @@ public class MainPlay : MonoBehaviour, IMain
 
         UpdateStateText();
 
-        NewGameButton.onClick.AddListener(StartNewGame);
+        StartNewGame();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_game.State == Game.GameState.Running)
+        {
+            if (Agent0.Player == _game.CurrentPlayer)
+            {
+                Agent0.RequestDecision();
+            }
+            else
+            {
+                Agent1.RequestDecision();
+            }
+        }
+        else if (_game.State == Game.GameState.Ended)
+        {
+            FinishEpisode(Agent0);
+            FinishEpisode(Agent1);
+
+            StartNewGame();
+        }
+
+        void FinishEpisode(MLAgent agent)
+        {
+            if (_game.Winner == agent.Player)
+            {
+                agent.SetReward(1.0f);
+            }
+            else if (_game.Winner == null)
+            {
+                agent.SetReward(0.0f);
+            }
+            else
+            {
+                agent.SetReward(-1.0f);
+            }
+
+            agent.EndEpisode();
+        }
     }
 
     public void StartNewGame()
     {
         _game.Start();
 
-        CreateCells();
+        ResetCells();
 
         UpdateStateText();
     }
@@ -63,6 +105,17 @@ public class MainPlay : MonoBehaviour, IMain
         }
     }
 
+    private void ResetCells()
+    {
+        for (int row = 0; row < Game.MaxSize; ++row)
+        {
+            for (int col = 0; col < Game.MaxSize; ++col)
+            {
+                UpdateCell(row, col, Game.CellType.Blank);
+            }
+        }
+    }
+
     private void UpdateCell(int row, int col, Game.CellType cell)
     {
         Button button = _board[row, col];
@@ -82,7 +135,7 @@ public class MainPlay : MonoBehaviour, IMain
             case Game.CellType.Cross:
                 text.text = "X";
                 break;
-        }         
+        }
     }
 
     private Vector3 GetCellPosition(int row, int col)
@@ -123,6 +176,7 @@ public class MainPlay : MonoBehaviour, IMain
 
         UpdateStateText();
     }
+
 
     private void UpdateStateText()
     {

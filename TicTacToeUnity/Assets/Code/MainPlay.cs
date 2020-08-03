@@ -1,21 +1,15 @@
-﻿using Newtonsoft.Json;
-using System.IO;
-using TicTacToe;
+﻿using TicTacToe;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class MainHeurisitc : MonoBehaviour
+public class MainPlay : MonoBehaviour, IMain
 {
-    private const string FileName = "tictactoe.json";
-
-    public GameObject BlankCellPrefab;
-    public GameObject CircleCellPrefab;
-    public GameObject CrossCellPrefab;
+    public GameObject CellPrefab;
     public Canvas Canvas;
     public Button NewGameButton;
     public Text StateText;
-    public bool SkipRendering;
+    public MLAgent Agent;
 
     private Game _game;
     private Button[,] _board = new Button[Game.MaxSize, Game.MaxSize];
@@ -23,19 +17,33 @@ public class MainHeurisitc : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        _game = Load() ?? new Game();
+        Agent.Main = this;
+
+        _game = new Game();
 
         CreateCells();
 
         UpdateStateText();
+
+        NewGameButton.onClick.AddListener(StartNewGame);
+    }
+
+    private void FixedUpdate()
+    {
+        if (_game.State == Game.GameState.Running)
+        {
+            if (Agent.Player == _game.CurrentPlayer)
+            {
+                Agent.RequestDecision();
+            }
+        }
     }
 
     public void StartNewGame()
     {
         _game.Start();
-        Save(_game);
 
-        CreateCells();
+        ResetCells();
 
         UpdateStateText();
     }
@@ -47,11 +55,6 @@ public class MainHeurisitc : MonoBehaviour
 
     private void CreateCells()
     {
-        if (SkipRendering)
-        {
-            return;
-        }
-
         for (int row = 0; row < Game.MaxSize; ++row)
         {
             for (int col = 0; col < Game.MaxSize; ++col)
@@ -59,41 +62,49 @@ public class MainHeurisitc : MonoBehaviour
                 CreateCell(row, col);
             }
         }
+
+        void CreateCell(int row, int col)
+        {
+            GameObject newGameObject = Instantiate(CellPrefab, Canvas.transform);
+            Button button = newGameObject.GetComponent<Button>();
+            button.onClick.AddListener(GetCellOnClick(row, col));
+
+            _board[row, col] = button;
+            button.transform.localPosition = GetCellPosition(row, col);
+        }
     }
 
-    private void CreateCell(int row, int col)
+    private void ResetCells()
     {
-        if (SkipRendering)
+        for (int row = 0; row < Game.MaxSize; ++row)
         {
-            return;
+            for (int col = 0; col < Game.MaxSize; ++col)
+            {
+                UpdateCell(row, col, Game.CellType.Blank);
+            }
         }
+    }
 
-        GameObject newGameObject = Instantiate(GetCellPrefab(row, col), Canvas.transform);
-        Button button = newGameObject.GetComponent<Button>();
+    private void UpdateCell(int row, int col, Game.CellType cell)
+    {
+        Button button = _board[row, col];
 
-        if (_board[row, col] != null)
-        {
-            Destroy(_board[row, col].gameObject);
-        }
-
-        _board[row, col] = button;
+        button.onClick.RemoveAllListeners();
         button.onClick.AddListener(GetCellOnClick(row, col));
-        button.transform.localPosition = GetCellPosition(row, col);
-    }
 
-    private GameObject GetCellPrefab(int row, int col)
-    {
-        switch (_game.Board[row, col])
+        Text text = button.GetComponentInChildren<Text>();
+        switch (cell)
         {
             case Game.CellType.Blank:
-                return BlankCellPrefab;
+                text.text = string.Empty;
+                break;
             case Game.CellType.Circle:
-                return CircleCellPrefab;
+                text.text = "O";
+                break;
             case Game.CellType.Cross:
-                return CrossCellPrefab;
-        }
-
-        return null;
+                text.text = "X";
+                break;
+        }         
     }
 
     private Vector3 GetCellPosition(int row, int col)
@@ -125,11 +136,12 @@ public class MainHeurisitc : MonoBehaviour
 
     public void Play(int row, int col)
     {
-        _game.SetCell(row, col, _game.CurrentPlayer);
+        if (!_game.SetCell(row, col, _game.CurrentPlayer))
+        {
+            return;
+        }
 
-        CreateCell(row, col);
-
-        Save(_game);
+        UpdateCell(row, col, _game.Board[row, col]);
 
         UpdateStateText();
     }
@@ -157,34 +169,5 @@ public class MainHeurisitc : MonoBehaviour
                 StateText.text = string.Empty;
                 break;
         }
-    }
-
-    private void Save(Game game)
-    {
-        if (SkipRendering)
-        {
-            return;
-        }
-
-        string json = JsonConvert.SerializeObject(game);
-        string path = Path.Combine(Application.persistentDataPath, FileName);
-        File.WriteAllText(path, json);
-    }
-
-    private Game Load()
-    {
-        if (SkipRendering)
-        {
-            return null;
-        }
-
-        string path = Path.Combine(Application.persistentDataPath, FileName);
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<Game>(json);
-        }
-
-        return null;
     }
 }
