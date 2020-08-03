@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -4535877070671034004}
   - component: {fileID: 8825631591137244408}
   m_Layer: 0
-  m_Name: MLAgentPlay
+  m_Name: MLAgent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   CurrentHeuristicType: 0
+  Player: 0
 --- !u!114 &8825631591137244408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 9
-    NumStackedVectorObservations: 1
+    NumStackedVectorObservations: 3
     VectorActionSize: 09000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
