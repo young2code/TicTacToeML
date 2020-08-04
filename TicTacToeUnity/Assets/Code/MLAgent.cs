@@ -14,8 +14,7 @@ public class MLAgent : Agent
 
     public IMain Main;
     public HeuristicType CurrentHeuristicType;
-
-    public Game.Player Player = Game.Player.PlayerCircle;
+    public Game.Player Player;
 
     public override void OnActionReceived(float[] vectorAction)
     {
@@ -27,30 +26,13 @@ public class MLAgent : Agent
     {
         Game game = Main.GetGame();
 
+        sensor.AddObservation((int)GetMyCellType());
+
         for (int row = 0; row < Game.MaxSize; ++row)
         {
             for (int col = 0; col < Game.MaxSize; ++col)
             {
                 Game.CellType cell = game.Board[row, col];
-
-                // Inverse the cell so that it plays as if  it is a circle player.
-                if (Player == Game.Player.PlayerCross)
-                {
-                    switch (cell)
-                    {
-                        case Game.CellType.Blank:
-                            break;
-
-                        case Game.CellType.Circle:
-                            cell = Game.CellType.Cross;
-                            break;
-
-                        case Game.CellType.Cross:
-                            cell = Game.CellType.Circle;
-                            break;
-                    }
-                }
-
                 sensor.AddObservation((int)cell);
             }
         }
@@ -75,51 +57,46 @@ public class MLAgent : Agent
         }
     }
 
-    private int GetRandomPlayIndex()
+    public void FinishEpisode()
     {
         Game game = Main.GetGame();
 
-        List<int> possiblePlays = new List<int>();
-
-        for (int row = 0; row < Game.MaxSize; ++row)
+        if (game.Winner == Player)
         {
-            for (int col = 0; col < Game.MaxSize; ++col)
-            {
-                if (game.Board[row, col] == Game.CellType.Blank)
-                {
-                    possiblePlays.Add(GetIndex(row, col));
-                }
-            }
+            SetReward(1.0f);
+        }
+        else if (game.Winner == null)
+        {
+            SetReward(0.0f);
+        }
+        else
+        {
+            SetReward(-1.0f);
         }
 
+        EndEpisode();
+    }
+
+    private int GetRandomPlayIndex()
+    {
+        List<int> possiblePlays = GetPossiblePlays();
         return possiblePlays[Random.Range(0, possiblePlays.Count)];
     }
 
     private int GetBasicPlayIndex()
     {
+        List<int> possiblePlays = GetPossiblePlays();
+
         Game game = Main.GetGame();
-
-        List<int> possiblePlays = new List<int>();
-
-        for (int row = 0; row < Game.MaxSize; ++row)
-        {
-            for (int col = 0; col < Game.MaxSize; ++col)
-            {
-                if (game.Board[row, col] == Game.CellType.Blank)
-                {
-                    possiblePlays.Add(GetIndex(row, col));
-                }
-            }
-        }
 
         // Obvious Attack
         foreach (int playIndex in possiblePlays)
         {
             var play = GetRowCol(playIndex);
             Game.CellType[,] board = game.Board.Clone() as Game.CellType[,];
-            board[play.row, play.col] = Game.CellType.Circle;
+            board[play.row, play.col] = GetMyCellType();
 
-            if (Game.CheckWinner(board, play.row, play.col, Game.CellType.Circle))
+            if (Game.CheckWinner(board, play.row, play.col, GetMyCellType()))
             {
                 return playIndex;
             }
@@ -130,9 +107,9 @@ public class MLAgent : Agent
         {
             var play = GetRowCol(playIndex);
             Game.CellType[,] board = game.Board.Clone() as Game.CellType[,];
-            board[play.row, play.col] = Game.CellType.Cross;
+            board[play.row, play.col] = GetOpponentCellType();
 
-            if (Game.CheckWinner(board, play.row, play.col, Game.CellType.Cross))
+            if (Game.CheckWinner(board, play.row, play.col, GetOpponentCellType()))
             {
                 return playIndex;
             }
@@ -140,6 +117,26 @@ public class MLAgent : Agent
 
         // Random
         return possiblePlays[Random.Range(0, possiblePlays.Count)];
+    }
+
+    private List<int> GetPossiblePlays()
+    {
+        Game game = Main.GetGame();
+
+        List<int> possiblePlays = new List<int>();
+
+        for (int row = 0; row < Game.MaxSize; ++row)
+        {
+            for (int col = 0; col < Game.MaxSize; ++col)
+            {
+                if (game.Board[row, col] == Game.CellType.Blank)
+                {
+                    possiblePlays.Add(GetIndex(row, col));
+                }
+            }
+        }
+
+        return possiblePlays;
     }
 
     private List<int> GetImpossiblePlays()
@@ -170,5 +167,15 @@ public class MLAgent : Agent
     private (int row, int col) GetRowCol(int index)
     {
         return (index / Game.MaxSize, index % Game.MaxSize);
+    }
+
+    private Game.CellType GetMyCellType()
+    {
+        return Player == Game.Player.PlayerCircle ? Game.CellType.Circle : Game.CellType.Cross;
+    }
+
+    private Game.CellType GetOpponentCellType()
+    {
+        return Player == Game.Player.PlayerCircle ? Game.CellType.Cross : Game.CellType.Circle;
     }
 }

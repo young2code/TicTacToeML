@@ -12,8 +12,8 @@ behaviors:
       learning_rate_schedule: linear
     network_settings:
       normalize: false
-      hidden_units: 64
-      num_layers: 8
+      hidden_units: 512
+      num_layers: 2
     reward_signals:
       extrinsic:
         gamma: 0.99
@@ -23,6 +23,6 @@ behaviors:
       swap_steps: 10000
       play_against_current_self_ratio: 0.5
       window: 5
-    max_steps: 1000000
+    max_steps: 10000000
     time_horizon: 64
     summary_freq: 10000

@@ -45,28 +45,10 @@ public class MainTrain : MonoBehaviour, IMain
         }
         else if (_game.State == Game.GameState.Ended)
         {
-            FinishEpisode(Agent0);
-            FinishEpisode(Agent1);
+            Agent0.FinishEpisode();
+            Agent1.FinishEpisode();
 
             StartNewGame();
-        }
-
-        void FinishEpisode(MLAgent agent)
-        {
-            if (_game.Winner == agent.Player)
-            {
-                agent.SetReward(1.0f);
-            }
-            else if (_game.Winner == null)
-            {
-                agent.SetReward(0.0f);
-            }
-            else
-            {
-                agent.SetReward(-1.0f);
-            }
-
-            agent.EndEpisode();
         }
     }
 
