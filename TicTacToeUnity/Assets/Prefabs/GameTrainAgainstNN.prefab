@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4541852883468202640}
   m_Layer: 0
-  m_Name: GameTrainBasic
+  m_Name: GameTrainAgainstNN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,6 +339,11 @@ PrefabInstance:
         type: 3}
       propertyPath: CurrentHeuristicType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4535877070671034004, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
+        type: 3}
+      propertyPath: Player
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8825631591137244388, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
         type: 3}
@@ -450,13 +455,14 @@ PrefabInstance:
     - target: {fileID: 8825631591137244408, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8825631591137244408, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: 5f7c7689b594f3349b1074dc7aa72ec8,
+        type: 3}
     - target: {fileID: 8825631591137244410, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
         type: 3}
       propertyPath: m_LocalPosition.x
