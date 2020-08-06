@@ -1,5 +1,5 @@
 # TicTacToeML with Unity ml-agnets
-If you are here, the chnances are you are still learning machine learning stuff just like myself. I highly encourge you to build this project by yourself before take a look at my code and settings. Because you will learn a lot of things and find questions that you didn't even think about before building it by youself. Those questions will really improve your skills and knowledge about ML. :)
+If you are here, the chances are you are still learning machine learning stuff just like myself. I highly encourge you to build this project by yourself before take a look at my code and settings. Because you will learn a lot of things and find questions that you didn't even think about before building it by youself. Those questions will really improve your skills and knowledge about ML. :)
 
 # Settings
 Alright first thing is first. Please follow Getting Started page in Unity and make it sure you can play and train the example project.
