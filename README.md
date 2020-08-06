@@ -68,7 +68,7 @@ When you train the model with self-play, the average reward is not meaningful me
 
 ![Graph](Images/EloGraph.PNG)
 
-It stop growing after 6 million games. This model never lose. (against me and my wife at least.)
+It stop growing after 6 million games. This trained model never lose!:triumph: (against me and my wife at least.:cry:)
 
 # Mistakes
 Obviously, I did not make all of this without any mistakes. Here they are.
