@@ -15,7 +15,7 @@ There are three Visual Studio 2019 projects here.
 2. TicTacToeCmd - This is a command line window tic-tac-toe client.
 3. TicTacToeUnity - This is a Unity client.
 
-I like to have a seperate game logic project from Unity because it allows me to test things out qucikly without launching Unity. This approach is also very useful if you want to run your game logic in both server and client (Unity). 
+I like to have a seperate game logic project from Unity because it allows me to test things out qucikly without launching Unity. This approach is also very useful if you want to run your game with different GUIs (Command Line vs. Unity) or even no GUI for server.  
 
 ./TicTacToe.sln contains TicTacToeLib and TicTacToeCmd projects. ./TicTacToeUnity/TicTacToeUnity.sln cotains TicTacToeUnity. If you are only interested in machine learning part, you can ignore TicTacToeLib and TicTacToeCmd projects.
 
