@@ -28,7 +28,7 @@ If you want to play against the neural network model I trained, please open [Pla
 ![PlayAgainstML](Images/PlayAgainstML.PNG)
 
 # Train against the radom AI
-If you want to train the model with the random AI, please open [TrainAgainstRandom](./TicTacToeUnity/Assets/Scenes/TrainAgainstRandom.unity) scene. You will notice that there are two MLAgentPlay. The first one is the one for training. The second one is the random AI implemented through void Heuristic(float[] actionsOut). 
+If you want to train the model with the random AI, please open [TrainAgainstRandom](./TicTacToeUnity/Assets/Scenes/TrainAgainstRandom.unity) scene. You will notice that there are two MLAgentPlay. The first one is the one for training. The second one is the random AI implemented through `void Heuristic(float[] actionsOut)`. 
 
 ![Agent0](Images/TrainAgainstRandom_Agent0.PNG) 
 ![Agent1](Images/TrainAgainstRandom_Agent1.PNG)
