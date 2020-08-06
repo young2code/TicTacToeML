@@ -28,6 +28,16 @@ If you want to play against the neural network model I trained, please open [Pla
 ![PlayAgainstML](Images/PlayAgainstML.PNG)
 
 # Train against the radom AI
-If you want to train the model with the random AI, pleae open [TrainAgainstRandom](./TicTacToeUnity/Assets/Scenes/TrainAgainstRandom.unity) scene. You will notice that there are two MLAgentPlay. The first one is the one for training. The second one is the random AI implemented through void Heuristic(float[] actionsOut).
+If you want to train the model with the random AI, please open [TrainAgainstRandom](./TicTacToeUnity/Assets/Scenes/TrainAgainstRandom.unity) scene. You will notice that there are two MLAgentPlay. The first one is the one for training. The second one is the random AI implemented through void Heuristic(float[] actionsOut). 
 
-![Agent0](Images/TrainAgainstRandom_Agent0.PNG) ![Agent1](Images/TrainAgainstRandom_Agent1.PNG)
+![Agent0](Images/TrainAgainstRandom_Agent0.PNG) 
+![Agent1](Images/TrainAgainstRandom_Agent1.PNG)
+
+Now you can run the below command and start play in Unity for traning.
+> mlagents-learn .\TicTacToeUnity\Assets\Configs\ml_single_config.yaml --run-id=Random
+
+You can also watch the progress through [Tensorboard](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-Tensorboard.md).
+![Graph](Images/TrainAgainstRandomEnvironment.PNG)
+
+Do not expect this model will play well. Even though it learns pretty well to beat the random AI, it is pretty bad at playing against human.
+
