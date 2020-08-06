@@ -1,4 +1,4 @@
-# TicTacToeML with Unity ml-agents
+# TicTacToeML with Unity ml-agents Self-play.
 If you are here, the chances are you are still learning machine learning stuff just like myself. I highly encourage you to build this project by yourself before take a look at my code and settings. You will learn a lot of things and find questions that you didn't even think about before building it by yourself. Those questions will greatly improve your skills and knowledge about ML. :)
 
 # Settings
