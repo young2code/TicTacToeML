@@ -75,7 +75,7 @@ It stop growing after 6 million games. This trained model never lose!:triumph: (
 # Mistakes
 Obviously, I did not make all of this without any mistakes. Here they are.
 
-1. For self-play training, I added one more feature that shows whether it is playing circle or cross. This was a huge mistake because this one feature makes a HUGE difference what it should do with the same board state. This is why my first couple of attempts with self-play was horribly failed. After removing this feature and invert the board state for cross player so that both of them are playing as circle player, it started learning really well.
+1. For self-play training, I added one more feature that shows whether it is playing circle or cross. This was a huge mistake because this one feature makes a too much difference for the model to learn what it should do with the same board state. This is why my first couple of attempts with self-play was horribly failed. After removing this feature and invert the board state for cross player so that both of them are playing as circle player, it started learning really well.
 
 2. Some of my hyperparameter settings (like batch_size and hidden_units) were just wrong for training discrete actions like tic-tac-toe. It was my bad that not carefully reading [the config doc](https://github.com/Unity-Technologies/ml-agents/blob/release_5_docs/docs/Training-Configuration-File.md). 
 
