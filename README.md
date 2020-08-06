@@ -64,6 +64,8 @@ You can find the details through the above blog post. The gist is that you just 
 ![Agent0](Images/TrainAgainstSelf_Agent0.PNG) 
 ![Agent1](Images/TrainAgainstSelf_Agent1.PNG)
 
+> mlagents-learn .\TicTacToeUnity\Assets\Configs\ml_multi_config.yaml --run-id=Self
+
 When you train the model with self-play, the average reward is not meaningful metric but Elo is. [Elo](https://en.wikipedia.org/wiki/Elo_rating_system) is a number for representing player's skill level. If you ever made match-making system, you should know about it already. Basically, as long as Elo is growing, there is a room for the model to improve. Here is the graph I got.
 
 ![Graph](Images/EloGraph.PNG)
