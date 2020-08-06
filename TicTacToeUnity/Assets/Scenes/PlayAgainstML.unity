@@ -486,22 +486,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 38cb9956894bc934484030af2477f1a3,
+      objectReference: {fileID: 5022602860645237092, guid: bfc1ccd8d59c57d46a988e281dff1e58,
         type: 3}
     - target: {fileID: 8825631591137244408, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
         type: 3}
       propertyPath: m_BehaviorType
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8825631591137244408, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
-        type: 3}
-      propertyPath: m_BrainParameters.VectorObservationSize
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8825631591137244408, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
-        type: 3}
-      propertyPath: TeamId
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8825631591137244410, guid: 5cd4b8375bb666e4fb4cb7e47ae20e5b,
         type: 3}
