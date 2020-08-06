@@ -8,7 +8,7 @@ https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Getting-Started
 
 Once you are done with the tutorial, you should be able open this project with no issue.
 
-# Project structure.
+# Projects
 There are three Visual Studio 2019 projects here.
 
 1. TicTacToeLib - This is a pure game logic library project.
@@ -23,4 +23,6 @@ I like to have a seperate game logic project from Unity because it allows me to 
 TicTacToeUnity is using Unity 2019.4.4f1. You should be able to open it by choosing [TicTacToeUnity](./TicTacToeUnity) directory through Unity Hub.
 
 # Play against the trained NN
-If you want to play against the neural network model I trained, please open ./
+If you want to play against the neural network model I trained, please open [PlayAgainstML](./TicTacToeUnity/Assets/Scenes/PlayAgainstML.unity) scene. You will play as X and NN will take O. If you want to use a differnt model, you can just drag and drop to Model field of MLAgentPlay.
+
+![PlayAgainstML](Images/PlayAgainstML.PNG)
