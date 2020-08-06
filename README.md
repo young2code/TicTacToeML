@@ -17,10 +17,10 @@ There are three Visual Studio 2019 projects here.
 
 I like to have a seperate game logic project from Unity because it allows me to test things out qucikly without launching Unity. This approach is also very useful if you want to run your game with different GUIs (Command Line vs. Unity) or even no GUI for server.  
 
-./TicTacToe.sln contains TicTacToeLib and TicTacToeCmd projects. ./TicTacToeUnity/TicTacToeUnity.sln cotains TicTacToeUnity. If you are only interested in machine learning part, you can ignore TicTacToeLib and TicTacToeCmd projects.
+[TicTacToe.sln](./TicTacToe.sln) contains TicTacToeLib and TicTacToeCmd projects. [TicTacToeUnity.sln](./TicTacToeUnity/TicTacToeUnity.sln) cotains TicTacToeUnity project. If you are only interested in the machine learning part, you can ignore TicTacToeLib and TicTacToeCmd projects.
 
 # Unity
-TicTacToeUnity is using Unity 2019.4.4f1. You should be able to open it by choosing ./TicTacToeUnity directory through Unity Hub.
+TicTacToeUnity is using Unity 2019.4.4f1. You should be able to open it by choosing [TicTacToeUnity](./TicTacToeUnity) directory through Unity Hub.
 
 # Play against the trained NN
 If you want to play against the neural network model I trained, please open ./
