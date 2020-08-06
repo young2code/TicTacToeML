@@ -41,10 +41,20 @@ Now you can run the below command and start play in Unity for traning.
 You can also watch the progress through [Tensorboard](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-Tensorboard.md).
 ![Graph](Images/TrainAgainstRandomEnvironment.PNG)
 
-My reward system is very simple. Win(1), Tie(0) and Lose(-1). As you can see, it quickly reached ver clost to 1. But do not expect this model will play well. Even though it learns pretty well to beat the random AI, it is really bad at playing against human. This was my first approach.
+My reward system is very simple. Win(1), Tie(0) and Lose(-1). As you can see, it quickly reached to near 1. But do not expect this model will play well. Even though it learns pretty well to beat the random AI, it is really bad at playing against human. This was my first approach.
 
 # Train against the basic AI
-After I realized that I need a st
+If you want to train the model with the basic AI, please open [TrainAgainstBasic](./TicTacToeUnity/Assets/Scenes/TrainAgainstBasic.unity) scene. You will notice that there are two MLAgentPlay. The first one is the one for training. The second one is the basic AI implemented through `void Heuristic(float[] actionsOut)`. 
 
+![Agent0](Images/TrainAgainstBasic_Agent0.PNG) 
+![Agent1](Images/TrainAgainstBasic_Agent1.PNG)
+
+Now you can run the below command and start play in Unity for traning.
+> mlagents-learn .\TicTacToeUnity\Assets\Configs\ml_single_config.yaml --run-id=Basic
+
+Here is the graph I got.
+![Graph](Images/TrainAgainstBasicEnvironment.PNG)
+
+This one stops growing at around 0.4 reward. Even though the average reward is much lower than the previous training, it actaully plays much better. Obivously it is because it is trained aginst a better player. However, it is still not that good when playing aganst human.
 
 
