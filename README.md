@@ -25,6 +25,8 @@ TicTacToeUnity is using Unity 2019.4.4f1. You should be able to open it by choos
 # Play against the trained NN
 If you want to play against the neural network model I trained, please open [PlayAgainstML](./TicTacToeUnity/Assets/Scenes/PlayAgainstML.unity) scene. You will play as X and NN will take O. If you want to use a differnt model, you can just drag and drop to Model field of MLAgentPlay.
 
+> :warning: [The model I tranined](./TicTacToeUnity/Assets/NNModels/TicTacToeSelfPlay.nn) is very strong. In fact, I'm not able to win. 😬
+
 ![PlayAgainstML](Images/PlayAgainstML.PNG)
 
 # Train against the radom AI
@@ -39,5 +41,10 @@ Now you can run the below command and start play in Unity for traning.
 You can also watch the progress through [Tensorboard](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-Tensorboard.md).
 ![Graph](Images/TrainAgainstRandomEnvironment.PNG)
 
-Do not expect this model will play well. Even though it learns pretty well to beat the random AI, it is pretty bad at playing against human.
+My reward system is very simple. Win(1), Tie(0) and Lose(-1). As you can see, it quickly reached ver clost to 1. But do not expect this model will play well. Even though it learns pretty well to beat the random AI, it is really bad at playing against human. This was my first approach.
+
+# Train against the basic AI
+After I realized that I need a st
+
+
 
