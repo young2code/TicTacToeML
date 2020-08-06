@@ -26,3 +26,8 @@ TicTacToeUnity is using Unity 2019.4.4f1. You should be able to open it by choos
 If you want to play against the neural network model I trained, please open [PlayAgainstML](./TicTacToeUnity/Assets/Scenes/PlayAgainstML.unity) scene. You will play as X and NN will take O. If you want to use a differnt model, you can just drag and drop to Model field of MLAgentPlay.
 
 ![PlayAgainstML](Images/PlayAgainstML.PNG)
+
+# Train against the radom AI
+If you want to train the model with the random AI, pleae open [TrainAgainstRandom](./TicTacToeUnity/Assets/Scenes/TrainAgainstRandom.unity) scene. You will notice that there are two MLAgentPlay. The first one is the one for training. The second one is the random AI implemented through void Heuristic(float[] actionsOut).
+
+![Agent0](Images/TrainAgainstRandom_Agent0.PNG) ![Agent1](Images/TrainAgainstRandom_Agent1.PNG)
