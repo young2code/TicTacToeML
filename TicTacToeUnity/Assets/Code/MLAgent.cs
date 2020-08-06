@@ -26,14 +26,12 @@ public class MLAgent : Agent
     {
         Game game = Main.GetGame();
 
-        sensor.AddObservation((int)GetMyCellType());
-
         for (int row = 0; row < Game.MaxSize; ++row)
         {
             for (int col = 0; col < Game.MaxSize; ++col)
             {
                 Game.CellType cell = game.Board[row, col];
-                sensor.AddObservation((int)cell);
+                sensor.AddObservation(GetFeatureFromCell(cell));
             }
         }
     }
@@ -167,6 +165,25 @@ public class MLAgent : Agent
     private (int row, int col) GetRowCol(int index)
     {
         return (index / Game.MaxSize, index % Game.MaxSize);
+    }
+
+    private int GetFeatureFromCell(Game.CellType cell)
+    {
+        // Invert the board state for Cross player so that it plays as Circle player.
+        // This will train the model to connect '1's and block '-1's.
+        switch (cell)
+        {
+            case Game.CellType.Circle:
+                return Player == Game.Player.PlayerCircle ? 1 : -1;
+            case Game.CellType.Cross:
+                return Player == Game.Player.PlayerCircle ? -1 : 1;
+            case Game.CellType.Blank:
+                return 0;
+        }
+
+        // This cannot be reached.
+        Debug.Assert(true);
+        return 0;
     }
 
     private Game.CellType GetMyCellType()
