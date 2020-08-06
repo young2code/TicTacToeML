@@ -44,7 +44,7 @@ You can also watch the progress through [Tensorboard](https://github.com/Unity-T
 My reward system is very simple. Win(1), Tie(0) and Lose(-1). As you can see, it quickly reached to near 1. But do not expect this model will play well. Even though it learns pretty well to beat the random AI, it is really bad at playing against human. This was my first approach.
 
 # Train against the basic AI
-If you want to train the model with the basic AI, please open [TrainAgainstBasic](./TicTacToeUnity/Assets/Scenes/TrainAgainstBasic.unity) scene. You will notice that there are two MLAgentPlay. The first one is for training. The second one is the basic AI implemented through `void Heuristic(float[] actionsOut)`. 
+If you want to train the model with the basic AI, please open [TrainAgainstBasic](./TicTacToeUnity/Assets/Scenes/TrainAgainstBasic.unity) scene. You will notice that there are two MLAgentPlay. The first one is for training. The second one is the basic AI implemented through `void Heuristic(float[] actionsOut)`. The basic AI does random moves except (1) it does defense when opponent would win next turn and (2) it does make a final move to win when it sees two things are already connected and there is an empty spot to finish. 
 
 Now you can run the below command and start play in Unity for training.
 > mlagents-learn .\TicTacToeUnity\Assets\Configs\ml_single_config.yaml --run-id=Basic
